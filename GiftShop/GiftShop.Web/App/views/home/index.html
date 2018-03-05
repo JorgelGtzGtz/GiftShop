@@ -1,0 +1,60 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <a class="navbar-brand" ui-sref="home">Gift Shop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item mr-2" ui-sref-active="active">
+                <a class="nav-link" ui-sref="home">Home<i class="fa fa-home fa-fw pull-right"></i></a>
+            </li>
+            <li class="nav-item mr-2" ui-sref-active="active" ng-if="globals.currentUser.IsAdmin">
+                <a class="nav-link" ui-sref="home.user" ui-sref-active="active">Users<i class="fa fa-users fa-fw pull-right"></i></a>
+            </li>
+            <li class="nav-item mr-2" ui-sref-active="active" ng-if="globals.currentUser.IsAdmin">
+                <a class="nav-link" ui-sref="home.categories" ui-sref-active="active">Categories<i class="fa fa-cubes fa-fw pull-right"></i></a>
+            </li>
+            <li class="nav-item mr-2" ui-sref-active="active" ng-if="globals.currentUser.IsAdmin">
+                <a class="nav-link" ui-sref="home.products" ui-sref-active="active">Products<i class="fa fa-product-hunt fa-fw pull-right"></i></a>
+            </li>
+            <!--<li class="nav-item mr-2">
+                <a class="nav-link" ng-click="go('home.products')" ui-sref-active="active">Products<i class="fa fa-product-hunt fa-fw pull-right"></i></a>
+            </li>
+            <li class="nav-item mr-2">
+                <a class="nav-link" ng-click="go('home.categories')" ui-sref-active="active">Categories<i class="fa fa-cubes fa-fw pull-right"></i></a>
+            </li>-->
+        </ul>
+        <ul class="navbar-nav">
+            <!--<li class="nav-item mr-3">
+                <span class="navbar-text" ng-bind="repository.currentuser.FirstName + ' ' + repository.currentuser.LastName"></span>
+            </li>
+            <li class="nav-item">
+                <button class="btn btn-outline-light" ng-click="onLogout()">Logout</button>
+            </li>-->
+            <li class="nav-item mr-3">
+                <a class="nav-link" ui-sref="home.cart">My Cart : {{ShopContent.length}}<i class="fa fa-shopping-cart fa-fw pull-right"></i></a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<div cg-busy="GSPromise"></div>
+<main class="container main-content" role="main" ui-view="content">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="prod in prodlist">
+                <div class="media">
+                    <div class="media-body">
+                        <h4 class="media-heading">{{prod.Name}}</h4>
+                        Description: <strong>{{prod.Description}}</strong>
+                    </div>
+                </div>
+                Quality:<input type="text" ng-model="prod.Quality"/>
+                <br/>
+                <button class="btn btn-primary" type="button" ng-click="AddToCart(prod)">Add to Cart</button>
+                <br /><br />
+            </div>
+        </div>
+    </div>
+</main>

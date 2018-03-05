@@ -1,0 +1,36 @@
+﻿<form ng-submit="form.$valid && login()" name="form" class="login-page" ng-class="{'needs-validation': !form.$submitted, 'was-validated': form.$submitted}" novalidate>
+    <div class="row align-items-center">
+        <div class="col-3 mx-auto">
+            <div class="card">
+                <div class="card-header">
+                    <div class="card-title">
+                        <h3>Login</h3>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="form-row">
+                        <div class="col mb-3">
+                            <label>User Name: </label>
+                            <input type="text" class="form-control" name="username" ng-model="Username" required autofocus/>
+                            <div class="invalid-feedback">
+                                User name is required
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="col mb-3">
+                            <label>Password: </label>
+                            <input type="password" class="form-control" name="password" ng-model="Password" required />
+                            <div class="invalid-feedback">
+                                Password is required
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <button type="submit" class="btn btn-dark" ng-disabled="form.$invalid || form.$pending">Login</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

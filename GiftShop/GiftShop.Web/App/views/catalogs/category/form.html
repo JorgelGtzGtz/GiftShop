@@ -1,0 +1,24 @@
+﻿<form name="form" novalidate ng-submit="form.$valid && Save()" ng-class="{'needs-validation': !form.$submitted, 'was-validated': form.$submitted}">
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="box-header text-left">
+                <h3 class="modal-title" id="modal-title">{{title}}</h3>
+            </div>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                <label class="form-text">Description</label>
+                <textarea rows="5" type="text" class="form-control" name="description" placeholder="Description" ng-model="formData.Description" required></textarea>
+                <div class="invalid-feedback">
+                    <div ng-messages="form.description.$error" ng-show="form.$submitted && form.description.$invalid">
+                        <div ng-message="required">Description is required.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-success" type="submit">Save</button>
+            <button class="btn btn-warning" type="button" ng-click="Cancel()">Cancel</button>
+        </div>
+    </div>
+</form>

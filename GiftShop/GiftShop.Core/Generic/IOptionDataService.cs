@@ -1,0 +1,14 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GiftShop.Core.Generic
+{
+    public interface IOptionDataService
+    {
+        List<object> ListCategory();
+        List<object> ListProduct();
+    }
+}
