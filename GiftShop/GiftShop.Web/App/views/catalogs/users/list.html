@@ -1,0 +1,74 @@
+﻿<div class="row clearfix align-items-center">
+    <div class="col-lg-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <h2>Users</h2>
+                </div>
+            </div>
+            <div class="card-body">
+                <form class="form-horizontal" ng-submit="Load(pagerOptions.page)">
+                    <div class="form-group">
+                        <div class="row">
+                            <div class="col-6">
+                                <input type="text" class="form-control" name="username" placeholder="Filter by User Name" ng-model="Criteria.username"/>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="form-check">
+                                    <input type="checkbox" ng-model="Criteria.isLocked" class="form-check-input" id="isLocked">
+                                    <label class="form-check-label" for="isLocked">Locked</label>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+                                <div class="form-check">
+                                    <input type="checkbox" ng-model="Criteria.isAdmin" class="form-check-input" id="isAdmin">
+                                    <label class="form-check-label" for="isAdmin">Is Admin</label>
+                                </div>
+                            </div>
+                            <div class="col-2 text-right">
+                                <button class="btn btn-primary" ng-click="Load()"><i class="fa fa-search"></i> Search</button>
+                            </div>
+                        </div>
+                    </div>
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th>User Name</th>
+                                <th>Email</th>
+                                <th>IsLocked</th>
+                                <th>IsAdmin</th>
+                                <th><button class="btn btn-primary" ng-click="New()"><i class="fa fa-user-plus"></i> Add</button></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in list">
+                                <td ng-bind="row.Username"></td>
+                                <td ng-bind="row.Email"></td>
+                                <td ng-bind="row.IsLocked"></td>
+                                <td ng-bind="row.IsAdmin"></td>
+                                <td>
+                                    <button class="btn btn-warning" ng-click="Edit(row)">
+                                        <i class="fa fa-edit"></i>
+                                    </button>
+                                    <button class="btn btn-danger" ng-click="Delete(row)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="5">
+                                    <sh-pagination page="{{pagerOptions.page}}" pages-count="{{pagerOptions.pagesCount}}" total-count="{{pagerOptions.totalCount}}" page-changed="pagerOptions.pageChanged(page)"></sh-pagination>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </form>
+            </div>
+            <div class="card-footer">
+
+            </div>
+        </div>
+    </div>
+</div>

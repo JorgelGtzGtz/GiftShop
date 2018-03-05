@@ -7,8 +7,30 @@ using System.Threading.Tasks;
 
 namespace GiftShop.Core.Security
 {
-    public class EncryptionService
+    public sealed class EncryptionService
     {
+        private static volatile EncryptionService _encryptor;
+        private static object syncRoot = new Object();
+
+        private EncryptionService() { }
+
+        public static EncryptionService Instance
+        {
+            get
+            {
+                if (_encryptor == null)
+                {
+                    lock (syncRoot)
+                    {
+                        if (_encryptor == null)
+                            _encryptor = new EncryptionService();
+                    }
+                }
+
+                return _encryptor;
+            }
+        }
+
         public string CreateSalt()
         {
             var data = new byte[0x10];

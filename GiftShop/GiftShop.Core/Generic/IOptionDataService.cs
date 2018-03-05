@@ -9,5 +9,6 @@ namespace GiftShop.Core.Generic
     public interface IOptionDataService
     {
         List<object> ListCategory();
+        List<object> ListProduct();
     }
 }

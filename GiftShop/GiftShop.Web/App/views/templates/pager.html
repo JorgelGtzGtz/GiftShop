@@ -1,0 +1,17 @@
+﻿<div class="row clearfix">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <label class="table-pagination-info">{{pagerText}}</label>
+    </div>
+    <div ng-hide="(!pagesCount || pagesCount < 2)" class="col-lg-6 col-md-6 col-sm-12 col-xs-12 text-right">
+        <ul class="pagination table-pagination-pages">
+            <li class="pagination_button first" ng-class="{'disabled': 0 == page}"><a ng-click="onPageChanged(0)"><i class="fa fa-fast-backward"></i></a></li>
+            <li class="pagination_button previous" ng-class="{'disabled': 0 == page}"><a ng-click="onPageChanged(page - 1)"><i class="fa fa-step-backward"></i></a></li>
+            <li class="pagination_button" ng-repeat="n in range()" ng-class="{'active': n == page}">
+                <a ng-click="onPageChanged(n)" ng-if="n != page" ng-bind="n+1"></a>
+                <span ng-if="n == page" ng-bind="n+1"></span>
+            </li>
+            <li class="pagination_button next" ng-class="{'disabled': (pagesCount - 1) == page}"><a ng-click="onPageChanged(pagePlus(1))"><i class="fa fa-step-forward"></i></a></li>
+            <li class="pagination_button next" ng-class="{'disabled': (pagesCount - 1) == page}"><a ng-click="onPageChanged(pagesCount - 1)"><i class="fa fa-fast-forward"></i></a></li>
+        </ul>
+    </div>
+</div>

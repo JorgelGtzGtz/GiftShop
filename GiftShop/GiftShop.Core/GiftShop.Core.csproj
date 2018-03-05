@@ -88,7 +88,6 @@
     <Compile Include="Generic\IAuthenticationService.cs" />
     <Compile Include="Generic\ICartDataService.cs" />
     <Compile Include="Generic\ICategoryDataService.cs" />
-    <Compile Include="Generic\IEncryptionService.cs" />
     <Compile Include="Generic\IOptionDataService.cs" />
     <Compile Include="Generic\IProductDataService.cs" />
     <Compile Include="Generic\IUsersDataService.cs" />

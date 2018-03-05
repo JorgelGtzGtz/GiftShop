@@ -6,15 +6,16 @@ using System.Text;
 using System.Threading.Tasks;
 using GiftShop.Core.Data;
 using GiftShop.Core.Generic;
+using GiftShop.Core.Security;
 
 namespace GiftShop.Core.Services
 {
     public class UsersDataService : ContextService, IUsersDataService
     {
-        private readonly IEncryptionService _encryptionService;
-        public UsersDataService(IEncryptionService encryptionService)
+ 
+        public UsersDataService()
         {
-            _encryptionService = encryptionService;
+         
         }
 
         public List<object> ListUserByFilter(string Username, bool? IsLocked, bool? isAdmin)
@@ -74,13 +75,13 @@ namespace GiftShop.Core.Services
                     }
                     else
                     {
-                        var passwordSalt = _encryptionService.CreateSalt();
+                        var passwordSalt = EncryptionService.Instance.CreateSalt();
 
                         User newUser = new User();
                         newUser.Username = username;
                         newUser.Email = email;
                         newUser.Salt = passwordSalt;
-                        newUser.HashedPassword = _encryptionService.EncryptPassword(password, passwordSalt);
+                        newUser.HashedPassword = EncryptionService.Instance.EncryptPassword(password, passwordSalt);
                         newUser.IsLocked = IsLocked;
                         newUser.IsAdmin = IsAdmin;
                         newUser.DateCreated = DateTime.Now;
@@ -100,7 +101,7 @@ namespace GiftShop.Core.Services
                     {
                         currentedituser.Username = username;
                         currentedituser.Email = email;
-                        currentedituser.HashedPassword = _encryptionService.EncryptPassword(password, currentedituser.Salt);
+                        currentedituser.HashedPassword = EncryptionService.Instance.EncryptPassword(password, currentedituser.Salt);
                         currentedituser.IsLocked = IsLocked;
                         currentedituser.IsAdmin = IsAdmin;
                     }

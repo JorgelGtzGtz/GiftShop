@@ -34,5 +34,32 @@ namespace GiftShop.Core.Services
                 throw ex;
             }
         }
+        public List<object> ListProduct()
+        {
+            try
+            {
+                List<Product> list = new List<Product>();
+                list = _context.Products.AsNoTracking().ToList<Product>();
+
+                List<object> items = new List<object>();
+                foreach (Product prod in list.OrderBy(o => o.ID))
+                {
+                    items.Add(new
+                    {
+                        prod.ID,
+                        prod.Name,
+                        prod.Description,
+                        prod.Price,
+                        prod.CategoryID
+                    });
+                }
+                list.Clear();
+                return items;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
